@@ -13,7 +13,7 @@ public class GreetingController {
 	private static final String template = "Hello, %s!";
 	private final AtomicLong counter = new AtomicLong();
 	private  List myArrayList = new ArrayList();
-	@GetMapping("/greeting")
+	@GetMapping("/read")
 	public List read(@RequestParam(value = "name", defaultValue = "World") String name) {
 		return myArrayList;
 	}
@@ -23,4 +23,15 @@ public class GreetingController {
 
 		return myArrayList;
 	}
+	@GetMapping("/delete")
+	public List delete(@RequestParam(value = "name", defaultValue = "World") int name) {
+		myArrayList.remove(name);
+		return myArrayList;
+	}
+	@GetMapping("/update")
+	public List update(@RequestParam(value = "name", defaultValue = "World") int name, @RequestParam(value = "index") int index) {
+		myArrayList.set(index, name);
+		return myArrayList;
+	}
 }
+
